@@ -203,32 +203,49 @@ body:not(.app-ready) .app-shell {
 }
 
 .login-hint {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--muted);
   margin-top: 24px;
-  padding: 14px 18px;
+  padding: 12px 16px;
   background: white;
-  border-radius: 14px;
+  border-radius: 12px;
   border: 1px solid var(--line);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
-  line-height: 1.5;
+  line-height: 1.4;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
 }
 
-.login-hint strong {
+.login-hint-icon {
+  font-size: 1.2rem;
+  margin-top: 2px;
+}
+
+.login-hint-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.login-hint-title {
+  font-weight: 700;
   color: var(--accent);
+}
+
+.login-hint-details {
+  color: var(--muted);
+  font-weight: 500;
 }
 
 .login-hint code {
   background: #fff5f2;
-  padding: 2px 6px;
-  border-radius: 6px;
+  padding: 1px 5px;
+  border-radius: 4px;
   color: var(--accent);
   font-weight: 700;
   font-family: inherit;
-  border: 1px solid rgba(207, 92, 54, 0.15);
+  border: 1px solid rgba(207, 92, 54, 0.1);
 }
 
 .setup-header {
