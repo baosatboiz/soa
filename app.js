@@ -246,7 +246,7 @@ function wireEvents() {
 
   ui.restartBtn.addEventListener("click", () => showView("setup"));
   ui.showHistoryAfterResultBtn.addEventListener("click", () => {
-    showView("setup");
+    showView("history");
     void renderHistory();
   });
 
