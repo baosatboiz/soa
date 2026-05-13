@@ -804,6 +804,7 @@ function renderCurrentQuestion() {
 
   ui.prevBtn.style.display = session.isPractice ? "none" : "inline-flex";
   ui.nextBtn.style.display = session.isPractice ? "none" : "inline-flex";
+  ui.saveDraftBtn.style.display = session.isPractice ? "none" : "inline-flex";
   ui.reviewExamBtn.textContent = session.isPractice ? "Nộp bài luyện tập" : "Nộp bài thi";
   
   ui.prevBtn.disabled = index === 0;
