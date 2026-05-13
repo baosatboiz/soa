@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const { MongoClient } = require('mongodb');
+const rateLimit = require('express-rate-limit');
 const fs = require('fs/promises');
 const path = require('path');
 
@@ -18,8 +19,31 @@ if (!MONGODB_URI) {
   throw new Error('Missing MONGODB_URI environment variable.');
 }
 
+app.set('trust proxy', 1);
 app.use(express.json({ limit: '5mb' }));
 app.use(express.static(ROOT_DIR));
+
+// Rate limiting tổng quát cho API: 100 requests / 15 phút
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: { message: 'Bạn đã gửi quá nhiều yêu cầu. Vui lòng thử lại sau 15 phút.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Rate limiting nghiêm ngặt cho Login: 10 requests / 15 phút
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  message: { message: 'Thử đăng nhập quá nhiều lần. Vui lòng thử lại sau 15 phút.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Áp dụng limiter
+app.use('/api/', apiLimiter);
+app.use('/api/auth/login', authLimiter);
 
 let db;
 
