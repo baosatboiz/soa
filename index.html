@@ -19,7 +19,7 @@
     <div id="loginLoading" class="login-loading" aria-live="polite" aria-busy="true" style="display: grid;">
       <div class="login-loading-card">
         <div class="login-spinner" aria-hidden="true"></div>
-        <p>Dang tai he thong...</p>
+        <p>Đang tải hệ thống...</p>
       </div>
     </div>
 
@@ -32,8 +32,8 @@
 
       <section id="loginView" class="panel login-panel active">
         <div class="login-container">
-          <h1>He thong thi trac nghiem</h1>
-          <p class="login-subtitle">Dang nhap de bat dau</p>
+          <h1>Phát triển phần mềm hướng dịch vụ</h1>
+          <p class="login-subtitle">Đăng nhập để bắt đầu</p>
 
           <form id="loginForm" class="login-form">
             <label for="username">Username</label>
@@ -57,29 +57,29 @@
               <button id="togglePasswordBtn" class="password-toggle" type="button" aria-label="Hien mat khau" aria-pressed="false">👁</button>
             </div>
 
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Dang nhap</button>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Đăng nhập</button>
           </form>
 
           <div id="loginError" class="login-error" style="display: none;"></div>
 
-          <p class="login-hint">Tai khoan test: B22DCCN001-005, mat khau: XXXB22DCCN (XXX la so cuoi cua tai khoan)</p>
+          <p class="login-hint">Tài khoản thử nghiệm: B22DCCN001-005, mật khẩu: XXXB22DCCN (XXX là số cuối của tài khoản)</p>
         </div>
       </section>
 
       <section id="setupView" class="panel setup-panel">
         <header class="setup-header">
           <div>
-            <h1>He thong thi trac nghiem 100 cau</h1>
+            <h1>Phát triển phần mềm hướng dịch vụ</h1>
             <p id="currentUserInfo" class="user-info"></p>
             <div id="draftSummary" class="draft-summary-alert" style="display: none;"></div>
           </div>
-          <button id="logoutBtn" class="btn btn-soft" type="button">Dang xuat</button>
+          <button id="logoutBtn" class="btn btn-soft" type="button">Đăng xuất</button>
         </header>
 
         <form id="setupForm" class="setup-form">
-          <div id="setMeta" class="set-meta">Hay chon mot dong bo de ben duoi.</div>
+          <div id="setMeta" class="set-meta">Hãy chọn một bộ đề bên dưới.</div>
           <div id="examSetsList" class="exam-sets-list"></div>
-          <button type="submit" class="btn btn-primary">Bat dau thi</button>
+          <button type="submit" class="btn btn-primary">Bắt đầu thi</button>
         </form>
       </section>
 
@@ -154,24 +154,24 @@
       <section id="examView" class="panel exam-panel">
         <header class="exam-topbar">
           <div>
-            <h2 id="examTitle">Dang thi</h2>
+            <h2 id="examTitle">Đang thi</h2>
             <p id="examMeta" class="meta-line"></p>
           </div>
           <div class="top-actions">
-            <button id="saveDraftBtn" class="btn btn-primary" type="button">Luu bai lam</button>
-            <button id="reviewExamBtn" class="btn btn-soft" type="button">Cham va review</button>
-            <button id="backToSetupBtn" class="btn btn-soft" type="button">Ve man hinh chinh</button>
+            <button id="saveDraftBtn" class="btn btn-primary" type="button">Lưu bài làm</button>
+            <button id="reviewExamBtn" class="btn btn-soft" type="button">Chấm và xem lại</button>
+            <button id="backToSetupBtn" class="btn btn-soft" type="button">Về màn hình chính</button>
           </div>
         </header>
 
         <div class="exam-layout">
           <aside class="question-nav-wrap">
-            <h3>Danh sach cau</h3>
+            <h3>Danh sách câu</h3>
             <div id="questionNav" class="question-nav"></div>
             <div class="legend">
-              <span><i class="dot current"></i> Dang xem</span>
-              <span><i class="dot answered"></i> Da tra loi</span>
-              <span><i class="dot empty"></i> Chua tra loi</span>
+              <span><i class="dot current"></i> Đang xem</span>
+              <span><i class="dot answered"></i> Đã trả lời</span>
+              <span><i class="dot empty"></i> Chưa trả lời</span>
             </div>
           </aside>
 
@@ -184,8 +184,8 @@
             <div id="answerArea" class="answer-area"></div>
 
             <footer class="question-footer">
-              <button id="prevBtn" class="btn btn-soft" type="button">Cau truoc</button>
-              <button id="nextBtn" class="btn btn-soft" type="button">Cau tiep</button>
+              <button id="prevBtn" class="btn btn-soft" type="button">Câu trước</button>
+              <button id="nextBtn" class="btn btn-soft" type="button">Câu tiếp</button>
             </footer>
           </article>
         </div>
@@ -194,12 +194,12 @@
       <section id="resultView" class="panel result-panel">
         <header class="exam-topbar">
           <div>
-            <h2 id="reviewTitle">Review bai lam</h2>
+            <h2 id="reviewTitle">Xem lại bài làm</h2>
             <p id="resultMeta" class="meta-line"></p>
           </div>
           <div class="top-actions">
-            <button id="restartBtn" class="btn btn-primary" type="button">Thi bo de khac</button>
-            <button id="showHistoryAfterResultBtn" class="btn btn-soft" type="button">Xem lich su ID</button>
+            <button id="restartBtn" class="btn btn-primary" type="button">Thi bộ đề khác</button>
+            <button id="showHistoryAfterResultBtn" class="btn btn-soft" type="button">Xem lịch sử thi</button>
           </div>
         </header>
 
@@ -207,12 +207,12 @@
 
         <div class="exam-layout">
           <aside class="question-nav-wrap">
-            <h3>Danh sach cau</h3>
+            <h3>Danh sách câu</h3>
             <div id="reviewNav" class="question-nav"></div>
             <div class="legend">
-              <span><i class="dot correct"></i> Dung</span>
+              <span><i class="dot correct"></i> Đúng</span>
               <span><i class="dot wrong"></i> Sai</span>
-              <span><i class="dot unanswered"></i> Chua tra loi</span>
+              <span><i class="dot unanswered"></i> Chưa trả lời</span>
             </div>
           </aside>
 
@@ -225,8 +225,8 @@
             <div id="reviewAnswerSection" class="review-answer-section"></div>
 
             <footer class="question-footer">
-              <button id="reviewPrevBtn" class="btn btn-soft" type="button">Cau truoc</button>
-              <button id="reviewNextBtn" class="btn btn-soft" type="button">Cau tiep</button>
+              <button id="reviewPrevBtn" class="btn btn-soft" type="button">Câu trước</button>
+              <button id="reviewNextBtn" class="btn btn-soft" type="button">Câu tiếp</button>
             </footer>
           </article>
         </div>

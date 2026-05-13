@@ -314,12 +314,12 @@ function setLoginLoading(isLoading) {
   }
 
   if (ui.loginLoadingText && isLoading) {
-    ui.loginLoadingText.textContent = "Dang dang nhap...";
+    ui.loginLoadingText.textContent = "Đang đăng nhập...";
   }
 
   if (ui.loginSubmitBtn) {
     ui.loginSubmitBtn.disabled = isLoading;
-    ui.loginSubmitBtn.textContent = isLoading ? "Dang nhap..." : "Dang nhap";
+    ui.loginSubmitBtn.textContent = isLoading ? "Đang đăng nhập..." : "Đăng nhập";
   }
 
   if (ui.togglePasswordBtn) {
@@ -349,7 +349,7 @@ function clearSessionUser() {
 
 function updateUserInfo() {
   if (state.currentUser) {
-    ui.currentUserInfo.textContent = `Dang nhap: ${state.currentUser.userId}`;
+    ui.currentUserInfo.textContent = `Đăng nhập: ${state.currentUser.userId}`;
   }
 }
 
@@ -358,7 +358,7 @@ async function renderLeaderboard() {
 
   try {
     const response = await fetch(`${API_BASE}/leaderboard`);
-    if (!response.ok) throw new Error("Khong the tai bang xep hang");
+    if (!response.ok) throw new Error("Không thể tải bảng xếp hạng");
     
     const data = await response.json();
     ui.leaderboardBody.innerHTML = "";
@@ -603,11 +603,11 @@ function renderExamSetsList() {
 
     let statusHtml = "";
     if (attempted) {
-      statusHtml = `<span class="exam-set-status done">Da lam ${attempts.length} lan | Max: ${maxScore} | Last: ${latestScore}</span>`;
+      statusHtml = `<span class="exam-set-status done">Đã làm ${attempts.length} lần | Max: ${maxScore} | Last: ${latestScore}</span>`;
     } else if (drafted) {
-      statusHtml = `<span class="exam-set-status draft">Dang lam do</span>`;
+      statusHtml = `<span class="exam-set-status draft">Đang làm dở</span>`;
     } else {
-      statusHtml = `<span class="exam-set-status new">Chua thi</span>`;
+      statusHtml = `<span class="exam-set-status new">Chưa thi</span>`;
     }
 
     card.innerHTML = `
@@ -1040,7 +1040,7 @@ function renderReviewQuestion(session) {
     const correctBlock = document.createElement("div");
     correctBlock.className = "review-answer-block correct-answer";
     correctBlock.innerHTML = `
-      <span class="review-answer-label">Dap an dung:</span>
+      <span class="review-answer-label">Đáp án đúng:</span>
       <div class="review-answer-content">${answerText(detail.options, detail.correctAnswers, "textAnswer")}</div>
     `;
     ui.reviewAnswerSection.appendChild(correctBlock);
@@ -1062,10 +1062,10 @@ function renderReviewQuestion(session) {
       }
 
       const label = isCorrectAnswer
-        ? "✓ Dap an dung"
+        ? "✓ Đáp án đúng"
         : isUserSelected
-          ? "✗ Ban chon (sai)"
-          : "Khong chon";
+          ? "✗ Bạn chọn (sai)"
+          : "Không chọn";
 
       block.className = blockClass;
       block.innerHTML = `
@@ -1165,11 +1165,11 @@ async function renderHistory() {
       const info = document.createElement("div");
       info.className = "history-row-info";
       info.innerHTML = `
-        <span class="history-row-number">Lan #${idx + 1}</span>
+        <span class="history-row-number">Lần #${idx + 1}</span>
         <div class="history-row-details">
-          <div class="history-row-detail-item"><strong>Bo de:</strong> ${at.setId}</div>
-          <div class="history-row-detail-item"><strong>Diem:</strong> ${at.score100}/100 (${at.correctCount}/${at.total} dung)</div>
-          <div class="history-row-detail-item"><strong>Nop:</strong> ${formatDate(at.submittedAt)}</div>
+          <div class="history-row-detail-item"><strong>Bộ đề:</strong> ${at.setId}</div>
+          <div class="history-row-detail-item"><strong>Điểm:</strong> ${at.score100}/100 (${at.correctCount}/${at.total} đúng)</div>
+          <div class="history-row-detail-item"><strong>Nộp:</strong> ${formatDate(at.submittedAt)}</div>
         </div>
       `;
 
@@ -1178,7 +1178,7 @@ async function renderHistory() {
       const viewBtn = document.createElement("button");
       viewBtn.className = "btn btn-soft";
       viewBtn.type = "button";
-      viewBtn.textContent = "Xem chi tiet";
+      viewBtn.textContent = "Xem chi tiết";
       viewBtn.style.padding = "6px 10px";
       viewBtn.style.fontSize = "0.85rem";
       viewBtn.addEventListener("click", () => {
@@ -1211,11 +1211,11 @@ function showAttemptDetail(attempt, attemptNumber) {
   stats.className = "attempt-detail-stat";
   stats.innerHTML = `
     <div class="attempt-detail-card">
-      <div class="attempt-detail-label">Tong cau</div>
+      <div class="attempt-detail-label">Tổng câu</div>
       <div class="attempt-detail-value">${attempt.total}</div>
     </div>
     <div class="attempt-detail-card">
-      <div class="attempt-detail-label">Dung</div>
+      <div class="attempt-detail-label">Đúng</div>
       <div class="attempt-detail-value" style="color: #1f7a46;">${attempt.correctCount}</div>
     </div>
     <div class="attempt-detail-card">
@@ -1223,7 +1223,7 @@ function showAttemptDetail(attempt, attemptNumber) {
       <div class="attempt-detail-value" style="color: #b42318;">${attempt.wrongCount}</div>
     </div>
     <div class="attempt-detail-card">
-      <div class="attempt-detail-label">Diem</div>
+      <div class="attempt-detail-label">Điểm</div>
       <div class="attempt-detail-value">${attempt.score100}/100</div>
     </div>
   `;
@@ -1233,12 +1233,12 @@ function showAttemptDetail(attempt, attemptNumber) {
   timeInfo.style.fontSize = "0.9rem";
   timeInfo.style.color = "var(--muted)";
   timeInfo.style.marginBottom = "12px";
-  timeInfo.innerHTML = `<strong>Thoi gian nop:</strong> ${formatDate(attempt.submittedAt)}`;
+  timeInfo.innerHTML = `<strong>Thời gian nộp:</strong> ${formatDate(attempt.submittedAt)}`;
   ui.attemptModalBody.appendChild(timeInfo);
 
   if (attempt.details && Array.isArray(attempt.details) && attempt.details.length > 0) {
     const detailsTitle = document.createElement("h4");
-    detailsTitle.textContent = "Chi tiet tung cau";
+    detailsTitle.textContent = "Chi tiết từng câu";
     detailsTitle.style.marginTop = "12px";
     detailsTitle.style.marginBottom = "8px";
     ui.attemptModalBody.appendChild(detailsTitle);
