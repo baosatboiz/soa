@@ -77,6 +77,8 @@ const ui = {
   navLeaderboardBtn: document.getElementById("navLeaderboardBtn"),
   leaderboardView: document.getElementById("leaderboardView"),
   backToHomeFromLeaderboardBtn: document.getElementById("backToHomeFromLeaderboardBtn"),
+  questionSearch: document.getElementById("questionSearch"),
+  searchResults: document.getElementById("searchResults"),
 };
 
 const state = {
@@ -248,6 +250,16 @@ function wireEvents() {
   });
 
   ui.reviewPrevBtn.addEventListener("click", () => moveReviewQuestion(-1));
+  
+  ui.questionSearch.addEventListener("input", (e) => {
+    handleSearch(e.target.value);
+  });
+
+  document.addEventListener("click", (e) => {
+    if (ui.searchResults && !ui.searchBox?.contains(e.target) && e.target !== ui.questionSearch) {
+      ui.searchResults.style.display = "none";
+    }
+  });
   ui.reviewNextBtn.addEventListener("click", () => moveReviewQuestion(1));
   if (ui.refreshLeaderboardBtn) {
     ui.refreshLeaderboardBtn.addEventListener("click", () => renderLeaderboard());
@@ -1484,3 +1496,47 @@ function formatQuestionContent(html) {
   return temp.innerHTML;
 }
 
+function handleSearch(query) {
+  if (!query || query.trim().length < 2) {
+    ui.searchResults.style.display = "none";
+    return;
+  }
+
+  const normalizedQuery = query.toLowerCase().trim();
+  const matches = state.allQuestions.filter(q => 
+    q.content.toLowerCase().includes(normalizedQuery) || 
+    q.questionAnswers.some(a => a.content.toLowerCase().includes(normalizedQuery))
+  ).slice(0, 15);
+
+  if (matches.length === 0) {
+    ui.searchResults.innerHTML = `<div class="search-no-results">Kh&ocirc;ng t&igrave;m th?y cu h?i no ph h?p.</div>`;
+  } else {
+    ui.searchResults.innerHTML = matches.map(q => {
+      const setIndex = state.examSets.findIndex(set => set.some(sq => sq.questionId === q.questionId));
+      const setName = setIndex !== -1 ? `B? d? ${setIndex + 1}` : "Kh&ocirc;ng xc d?nh";
+      
+      return `
+        <div class="search-item" onclick="selectSearchSet(${setIndex})">
+          <div class="search-item-header">
+            <span>${setName}</span>
+            <span class="difficulty-tag ${q.difficultyLevel.toLowerCase()}">${q.difficultyLevel}</span>
+          </div>
+          <div class="search-item-content">${q.content.replace(/<[^>]*>?/gm, '')}</div>
+        </div>
+      `;
+    }).join("");
+  }
+  ui.searchResults.style.display = "block";
+}
+
+window.selectSearchSet = (index) => {
+  if (index === -1) return;
+  state.selectedExamSetIndex = index;
+  renderExamSetsList();
+  renderSetMeta();
+  ui.searchResults.style.display = "none";
+  ui.questionSearch.value = "";
+  // Scroll to selected set
+  const target = document.querySelector(`.exam-set-card[data-index="${index}"]`);
+  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+};
