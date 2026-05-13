@@ -1165,7 +1165,11 @@ async function renderHistory() {
     }
 
     const payload = await response.json();
-    const attempts = Array.isArray(payload.attempts) ? payload.attempts : [];
+    let attempts = Array.isArray(payload.attempts) ? payload.attempts : [];
+    
+    // Lọc bỏ luyện tập nhanh khỏi lịch sử và thống kê
+    attempts = attempts.filter(a => !a.isPractice && a.setId !== "LUYEN-TAP-NHANH");
+    
     state.historyAttempts = attempts;
 
     if (attempts.length === 0) {
