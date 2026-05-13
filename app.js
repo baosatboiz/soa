@@ -689,7 +689,7 @@ function renderQuestionNav() {
     ui.questionNav.style.display = "none";
     return;
   }
-  ui.questionNav.style.display = "flex";
+  ui.questionNav.style.display = "grid";
   
   session.questions.forEach((_, index) => {
     const button = document.createElement("button");
