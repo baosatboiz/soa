@@ -685,6 +685,12 @@ function renderQuestionNav() {
   }
 
   ui.questionNav.innerHTML = "";
+  if (session.isPractice) {
+    ui.questionNav.style.display = "none";
+    return;
+  }
+  ui.questionNav.style.display = "flex";
+  
   session.questions.forEach((_, index) => {
     const button = document.createElement("button");
     button.type = "button";
@@ -796,6 +802,10 @@ function renderCurrentQuestion() {
     });
   }
 
+  ui.prevBtn.style.display = session.isPractice ? "none" : "inline-flex";
+  ui.nextBtn.style.display = session.isPractice ? "none" : "inline-flex";
+  ui.reviewExamBtn.textContent = session.isPractice ? "Nộp bài luyện tập" : "Nộp bài thi";
+  
   ui.prevBtn.disabled = index === 0;
   ui.nextBtn.disabled = index === session.questions.length - 1;
 }
@@ -1517,7 +1527,7 @@ function handleSearch(query) {
       const setName = setIndex !== -1 ? `Bộ đề ${setIndex + 1}` : "Không xác định";
       
       return `
-        <div class="search-item" onclick="selectSearchSet(${setIndex}, '${q.questionId}')">
+        <div class="search-item" onclick="startQuickPractice('${q.questionId}')">
           <div class="search-item-header">
             <span>${setName}</span>
             <span class="difficulty-tag ${q.difficultyLevel.toLowerCase()}">${q.difficultyLevel}</span>
@@ -1529,6 +1539,36 @@ function handleSearch(query) {
   }
   ui.searchResults.style.display = "block";
 }
+
+window.startQuickPractice = async (questionId) => {
+  const question = state.allQuestions.find(q => q.questionId === questionId);
+  if (!question) return;
+
+  const userId = state.currentUser.userId;
+  
+  // Tạo session chỉ có 1 câu hỏi
+  state.currentSession = {
+    userId,
+    setId: "LUYEN-TAP-NHANH",
+    startedAt: new Date().toISOString(),
+    questions: [{ ...question }],
+    answers: {},
+    currentIndex: 0,
+    submitted: false,
+    result: null,
+    isPractice: true
+  };
+
+  ui.examTitle.textContent = `Luyện tập nhanh - ${questionId.slice(0, 8)}...`;
+  ui.examMeta.textContent = `Chế độ luyện tập 1 câu hỏi`;
+
+  renderQuestionNav();
+  renderCurrentQuestion();
+  showView("exam");
+  
+  ui.searchResults.style.display = "none";
+  ui.questionSearch.value = "";
+};
 
 window.selectSearchSet = async (index, questionId) => {
   if (index === -1) return;
