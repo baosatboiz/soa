@@ -4,3 +4,5 @@ node_modules/
 *.log
 attempts.json
 .venv/
+
+a.py
