@@ -136,6 +136,8 @@ app.get('/api/questions', async (_req, res) => {
       .sort({ seedOrder: 1 })
       .toArray();
 
+    // Cache danh sách câu hỏi trong 5 phút (300 giây)
+    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=60');
     res.json(questions);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -306,6 +308,8 @@ app.get('/api/leaderboard', async (_req, res) => {
       { $limit: 100 }
     ]).toArray();
 
+    // Cache kết quả trên Vercel Edge trong 60 giây
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=30');
     res.json(leaderboard);
   } catch (error) {
     res.status(500).json({ message: error.message });
