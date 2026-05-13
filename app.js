@@ -855,16 +855,21 @@ async function submitForReview() {
   const result = gradeSession(session);
   session.submitted = true;
   session.result = result;
-  await persistAttempt(session);
-  await clearDraft(session.userId, session.setId);
+
+  // Nếu là luyện tập nhanh, không lưu vào database
+  if (!session.isPractice) {
+    await persistAttempt(session);
+    await clearDraft(session.userId, session.setId);
+    void renderLeaderboard();
+  }
+
   renderResult(session);
   showView("result");
-  void renderLeaderboard();
 }
 
 async function saveCurrentDraft(silent = false) {
   const session = state.currentSession;
-  if (!session || session.submitted) {
+  if (!session || session.submitted || session.isPractice) {
     return;
   }
 
