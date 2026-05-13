@@ -173,7 +173,7 @@ app.post('/api/auth/login', async (req, res) => {
 
     const user = await loginUser(username, password);
     if (!user) {
-      await createLog('LOGIN_FAILED', { username }, req);
+      await createLog('LOGIN_FAILED', { username, studentId: username }, req);
       return res.status(401).json({ message: 'Tên đăng nhập hoặc mật khẩu không đúng.' });
     }
 
