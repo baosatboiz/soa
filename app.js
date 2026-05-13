@@ -856,12 +856,15 @@ async function submitForReview() {
   session.submitted = true;
   session.result = result;
 
-  // Nếu là luyện tập nhanh, không lưu vào database
+  // Lưu vào database (bao gồm cả luyện tập để tính điểm leaderboard)
+  await persistAttempt(session);
+  
+  // Chỉ xóa draft nếu là bộ đề chính thức (luyện tập không tạo draft)
   if (!session.isPractice) {
-    await persistAttempt(session);
     await clearDraft(session.userId, session.setId);
-    void renderLeaderboard();
   }
+  
+  void renderLeaderboard();
 
   renderResult(session);
   showView("result");
@@ -1331,6 +1334,7 @@ async function persistAttempt(session) {
       correctCount: session.result.correctCount,
       wrongCount: session.result.wrongCount,
       score100: session.result.score100,
+      isPractice: !!session.isPractice,
       details: resultDetails,
     }),
   });

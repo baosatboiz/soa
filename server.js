@@ -173,14 +173,14 @@ app.post('/api/auth/login', async (req, res) => {
 
     const user = await loginUser(username, password);
     if (!user) {
-      await createLog('LOGIN_FAILED', { username, studentId: username }, req);
+      await createLog('LOGIN_FAILED', { username }, req);
       return res.status(401).json({ message: 'Tên đăng nhập hoặc mật khẩu không đúng.' });
     }
 
-    await createLog('LOGIN_SUCCESS', { 
-      userId: user.userId, 
-      studentId: user.userId, 
-      username: user.username 
+    await createLog('LOGIN_SUCCESS', {
+      userId: user.userId,
+      studentId: user.userId,
+      username: user.username
     }, req);
     res.json(user);
   } catch (error) {
@@ -207,8 +207,8 @@ app.get('/api/users/:userId/attempts', async (req, res) => {
   try {
     const userId = asObjectIdSafe(req.params.userId);
     const attempts = await db.collection('attempts')
-      .find({ userId }, { projection: { _id: 0 } })
-      .sort({ submittedAt: 1, startedAt: 1 })
+      .find({ userId, isPractice: { $ne: true } })
+      .sort({ submittedAt: -1 })
       .toArray();
 
     res.json({ userId, attempts });
@@ -235,6 +235,7 @@ app.post('/api/users/:userId/attempts', async (req, res) => {
       correctCount: Number(body.correctCount) || 0,
       wrongCount: Number(body.wrongCount) || 0,
       score100: Number(body.score100) || 0,
+      isPractice: !!body.isPractice,
       details: Array.isArray(body.details) ? body.details : [],
     };
 
@@ -379,10 +380,10 @@ app.get('/api/leaderboard', async (_req, res) => {
 // Middleware xử lý lỗi tập trung
 app.use(async (err, req, res, next) => {
   console.error(err.stack);
-  await createLog('SERVER_ERROR', { 
-    message: err.message, 
+  await createLog('SERVER_ERROR', {
+    message: err.message,
     path: req.path,
-    stack: err.stack 
+    stack: err.stack
   }, req);
   res.status(500).json({ message: 'Đã có lỗi xảy ra trên server.' });
 });
