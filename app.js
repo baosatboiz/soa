@@ -79,6 +79,7 @@ const ui = {
   backToHomeFromLeaderboardBtn: document.getElementById("backToHomeFromLeaderboardBtn"),
   questionSearch: document.getElementById("questionSearch"),
   searchResults: document.getElementById("searchResults"),
+  searchBox: document.querySelector(".search-box"),
 };
 
 const state = {
@@ -256,7 +257,7 @@ function wireEvents() {
   });
 
   document.addEventListener("click", (e) => {
-    if (ui.searchResults && !ui.searchBox?.contains(e.target) && e.target !== ui.questionSearch) {
+    if (ui.searchResults && !ui.searchBox?.contains(e.target)) {
       ui.searchResults.style.display = "none";
     }
   });
@@ -1509,11 +1510,11 @@ function handleSearch(query) {
   ).slice(0, 15);
 
   if (matches.length === 0) {
-    ui.searchResults.innerHTML = `<div class="search-no-results">Kh&ocirc;ng t&igrave;m th?y cu h?i no ph h?p.</div>`;
+    ui.searchResults.innerHTML = `<div class="search-no-results">Không tìm thấy câu hỏi nào phù hợp.</div>`;
   } else {
     ui.searchResults.innerHTML = matches.map(q => {
       const setIndex = state.examSets.findIndex(set => set.some(sq => sq.questionId === q.questionId));
-      const setName = setIndex !== -1 ? `B? d? ${setIndex + 1}` : "Kh&ocirc;ng xc d?nh";
+      const setName = setIndex !== -1 ? `Bộ đề ${setIndex + 1}` : "Không xác định";
       
       return `
         <div class="search-item" onclick="selectSearchSet(${setIndex})">
