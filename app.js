@@ -1517,7 +1517,7 @@ function handleSearch(query) {
       const setName = setIndex !== -1 ? `Bộ đề ${setIndex + 1}` : "Không xác định";
       
       return `
-        <div class="search-item" onclick="selectSearchSet(${setIndex})">
+        <div class="search-item" onclick="selectSearchSet(${setIndex}, '${q.questionId}')">
           <div class="search-item-header">
             <span>${setName}</span>
             <span class="difficulty-tag ${q.difficultyLevel.toLowerCase()}">${q.difficultyLevel}</span>
@@ -1530,14 +1530,29 @@ function handleSearch(query) {
   ui.searchResults.style.display = "block";
 }
 
-window.selectSearchSet = (index) => {
+window.selectSearchSet = async (index, questionId) => {
   if (index === -1) return;
+  
+  // Hiển thị loading nhẹ
+  ui.questionSearch.value = "Đang chuyển đến câu hỏi...";
+  
   state.selectedExamSetIndex = index;
   renderExamSetsList();
   renderSetMeta();
+
+  // Bắt đầu thi cho bộ đề này
+  await startExam();
+
+  // Tìm và nhảy đến câu hỏi cụ thể
+  if (state.currentSession && questionId) {
+    const qIndex = state.currentSession.questions.findIndex(q => q.questionId === questionId);
+    if (qIndex !== -1) {
+      state.currentSession.currentIndex = qIndex;
+      renderQuestionNav();
+      renderCurrentQuestion();
+    }
+  }
+
   ui.searchResults.style.display = "none";
   ui.questionSearch.value = "";
-  // Scroll to selected set
-  const target = document.querySelector(`.exam-set-card[data-index="${index}"]`);
-  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
 };
