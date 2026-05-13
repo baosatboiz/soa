@@ -1513,7 +1513,7 @@ function handleSearch(query) {
     ui.searchResults.innerHTML = `<div class="search-no-results">Không tìm thấy câu hỏi nào phù hợp.</div>`;
   } else {
     ui.searchResults.innerHTML = matches.map(q => {
-      const setIndex = state.examSets.findIndex(set => set.some(sq => sq.questionId === q.questionId));
+      const setIndex = state.examSets.findIndex(set => set.questions.some(sq => sq.questionId === q.questionId));
       const setName = setIndex !== -1 ? `Bộ đề ${setIndex + 1}` : "Không xác định";
       
       return `
