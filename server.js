@@ -177,7 +177,11 @@ app.post('/api/auth/login', async (req, res) => {
       return res.status(401).json({ message: 'Tên đăng nhập hoặc mật khẩu không đúng.' });
     }
 
-    await createLog('LOGIN_SUCCESS', { userId: user.userId, username: user.username }, req);
+    await createLog('LOGIN_SUCCESS', { 
+      userId: user.userId, 
+      studentId: user.userId, 
+      username: user.username 
+    }, req);
     res.json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
