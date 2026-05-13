@@ -74,16 +74,28 @@ async function readJsonArray(filePath) {
   return parsed;
 }
 
-async function seedCollectionIfEmpty(collection, filePath, enrichFn) {
-  const count = await collection.estimatedDocumentCount();
-  if (count > 0) {
-    return;
-  }
+async function syncCollectionWithFile(collection, filePath, matchField, enrichFn) {
+  try {
+    const rows = await readJsonArray(filePath);
+    const operations = rows.map((row, index) => {
+      const doc = enrichFn ? enrichFn(row, index) : row;
+      return {
+        updateOne: {
+          filter: { [matchField]: doc[matchField] },
+          update: { $set: doc },
+          upsert: true
+        }
+      };
+    });
 
-  const rows = await readJsonArray(filePath);
-  const docs = rows.map((row, index) => enrichFn ? enrichFn(row, index) : row);
-  if (docs.length > 0) {
-    await collection.insertMany(docs, { ordered: false });
+    if (operations.length > 0) {
+      const result = await collection.bulkWrite(operations, { ordered: false });
+      if (result.upsertedCount > 0 || result.modifiedCount > 0) {
+        console.log(`Synced ${path.basename(filePath)}: ${result.upsertedCount} new, ${result.modifiedCount} updated.`);
+      }
+    }
+  } catch (err) {
+    console.error(`Failed to sync ${path.basename(filePath)}:`, err.message);
   }
 }
 
@@ -100,19 +112,36 @@ async function ensureDatabaseSeeded() {
     questions.createIndex({ seedOrder: 1 }),
     attempts.createIndex({ userId: 1, submittedAt: -1 }),
     drafts.createIndex({ userId: 1, setId: 1 }, { unique: true }),
+    // TTL Index cho logs: Tự động xóa sau 7 ngày (7 * 24 * 60 * 60 giây)
+    db.collection('logs').createIndex({ createdAt: 1 }, { expireAfterSeconds: 604800 }),
   ]);
 
-  await seedCollectionIfEmpty(users, USERS_FILE, (row, index) => ({
+  await syncCollectionWithFile(users, USERS_FILE, 'userId', (row, index) => ({
     userId: cleanText(row.userId),
     username: cleanText(row.username),
     password: cleanText(row.password),
     seedOrder: index,
   }));
 
-  await seedCollectionIfEmpty(questions, QUESTIONS_FILE, (row, index) => ({
+  await syncCollectionWithFile(questions, QUESTIONS_FILE, 'questionId', (row, index) => ({
     ...row,
     seedOrder: index,
   }));
+}
+
+async function createLog(type, details, req = null) {
+  try {
+    const logEntry = {
+      type,
+      details,
+      ip: req ? (req.headers['x-forwarded-for'] || req.ip) : 'system',
+      userAgent: req ? req.headers['user-agent'] : null,
+      createdAt: new Date()
+    };
+    await db.collection('logs').insertOne(logEntry);
+  } catch (err) {
+    console.error('Failed to write log:', err);
+  }
 }
 
 async function loginUser(username, password) {
@@ -144,9 +173,11 @@ app.post('/api/auth/login', async (req, res) => {
 
     const user = await loginUser(username, password);
     if (!user) {
-      return res.status(401).json({ message: 'Invalid username or password.' });
+      await createLog('LOGIN_FAILED', { username }, req);
+      return res.status(401).json({ message: 'Tên đăng nhập hoặc mật khẩu không đúng.' });
     }
 
+    await createLog('LOGIN_SUCCESS', { userId: user.userId, username: user.username }, req);
     res.json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -336,8 +367,20 @@ app.get('/api/leaderboard', async (_req, res) => {
     res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=30');
     res.json(leaderboard);
   } catch (error) {
+    await createLog('ERROR', { path: '/api/leaderboard', message: error.message });
     res.status(500).json({ message: error.message });
   }
+});
+
+// Middleware xử lý lỗi tập trung
+app.use(async (err, req, res, next) => {
+  console.error(err.stack);
+  await createLog('SERVER_ERROR', { 
+    message: err.message, 
+    path: req.path,
+    stack: err.stack 
+  }, req);
+  res.status(500).json({ message: 'Đã có lỗi xảy ra trên server.' });
 });
 
 async function bootstrap() {
