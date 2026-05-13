@@ -996,6 +996,9 @@ function renderResult(session) {
     ui.reviewSummary.appendChild(div);
   });
 
+  // Ẩn nút xem lịch sử nếu là luyện tập nhanh
+  ui.showHistoryAfterResultBtn.style.display = session.isPractice ? "none" : "inline-flex";
+
   state.reviewIndex = 0;
   renderReviewNav(session);
   renderReviewQuestion(session);
