@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exam Builder 100 - Bank Questions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <div id="loginLoading" class="login-loading" aria-live="polite" aria-busy="true" style="display: grid;">
+      <div class="login-loading-card">
+        <div class="login-spinner" aria-hidden="true"></div>
+        <p>Dang tai he thong...</p>
+      </div>
+    </div>
+
+    <main class="app-shell">
+      <nav id="mainNav" class="main-nav" style="display: none;">
+        <button id="navHomeBtn" class="nav-link active" type="button">Trang chủ</button>
+        <button id="navHistoryBtn" class="nav-link" type="button">Lịch sử</button>
+        <button id="navLeaderboardBtn" class="nav-link" type="button">Bảng xếp hạng</button>
+      </nav>
+
+      <section id="loginView" class="panel login-panel active">
+        <div class="login-container">
+          <h1>He thong thi trac nghiem</h1>
+          <p class="login-subtitle">Dang nhap de bat dau</p>
+
+          <form id="loginForm" class="login-form">
+            <label for="username">Username</label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              required
+              placeholder="VD: B22DCCN001"
+            />
+
+            <label for="password">Password</label>
+            <div class="password-field">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                placeholder="VD: 001B22DCCN"
+              />
+              <button id="togglePasswordBtn" class="password-toggle" type="button" aria-label="Hien mat khau" aria-pressed="false">👁</button>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Dang nhap</button>
+          </form>
+
+          <div id="loginError" class="login-error" style="display: none;"></div>
+
+          <p class="login-hint">Tai khoan test: B22DCCN001-005, mat khau: XXXB22DCCN (XXX la so cuoi cua tai khoan)</p>
+        </div>
+      </section>
+
+      <section id="setupView" class="panel setup-panel">
+        <header class="setup-header">
+          <div>
+            <h1>He thong thi trac nghiem 100 cau</h1>
+            <p id="currentUserInfo" class="user-info"></p>
+            <div id="draftSummary" class="draft-summary-alert" style="display: none;"></div>
+          </div>
+          <button id="logoutBtn" class="btn btn-soft" type="button">Dang xuat</button>
+        </header>
+
+        <form id="setupForm" class="setup-form">
+          <div id="setMeta" class="set-meta">Hay chon mot dong bo de ben duoi.</div>
+          <div id="examSetsList" class="exam-sets-list"></div>
+          <button type="submit" class="btn btn-primary">Bat dau thi</button>
+        </form>
+      </section>
+
+      <section id="historyView" class="panel history-panel">
+        <header class="setup-header">
+          <div>
+            <h1>Lịch sử thi cá nhân</h1>
+            <p class="subtitle">Xem lại các lần thi và kết quả chi tiết của bạn</p>
+          </div>
+          <div class="top-actions" style="display: flex; gap: 8px;">
+            <button id="refreshHistoryBtn" class="btn btn-soft" type="button">Làm mới</button>
+            <button id="clearHistoryBtn" class="btn btn-danger" type="button">Xóa tất cả lịch sử</button>
+          </div>
+        </header>
+
+        <div id="historySummary" class="history-summary" style="display: none;">
+          <div class="summary-stat">
+            <span class="summary-label">Tổng lần thi</span>
+            <span class="summary-value" id="totalAttempts">0</span>
+          </div>
+          <div class="summary-stat">
+            <span class="summary-label">Điểm cao nhất</span>
+            <span class="summary-value" id="maxScore">0</span>
+          </div>
+          <div class="summary-stat">
+            <span class="summary-label">Điểm trung bình</span>
+            <span class="summary-value" id="avgScore">0</span>
+          </div>
+        </div>
+
+        <div id="historyContainer" class="history-container empty">
+          Đang tải lịch sử...
+        </div>
+
+        <div style="margin-top: 20px;">
+          <button id="backToHomeFromHistoryBtn" class="btn btn-soft" type="button">Quay lại trang chủ</button>
+        </div>
+      </section>
+
+
+      <section id="leaderboardView" class="panel leaderboard-panel">
+        <header class="setup-header">
+          <div>
+            <h1>Bảng xếp hạng sinh viên</h1>
+            <p class="subtitle">Top 100 sinh viên tích cực nhất hệ thống</p>
+          </div>
+          <button id="refreshLeaderboardBtn2" class="btn btn-soft" type="button">Làm mới</button>
+        </header>
+
+        <div class="leaderboard-table-wrap">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th>Hạng</th>
+                <th>Sinh viên</th>
+                <th>Số câu đúng</th>
+                <th>Lượt thi</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardBody">
+
+              <tr><td colspan="5" style="text-align: center; padding: 20px; color: var(--muted);">Đang tải dữ liệu...</td></tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div style="margin-top: 20px;">
+          <button id="backToHomeFromLeaderboardBtn" class="btn btn-soft" type="button">Quay lại trang chủ</button>
+        </div>
+      </section>
+
+      <section id="examView" class="panel exam-panel">
+        <header class="exam-topbar">
+          <div>
+            <h2 id="examTitle">Dang thi</h2>
+            <p id="examMeta" class="meta-line"></p>
+          </div>
+          <div class="top-actions">
+            <button id="saveDraftBtn" class="btn btn-primary" type="button">Luu bai lam</button>
+            <button id="reviewExamBtn" class="btn btn-soft" type="button">Cham va review</button>
+            <button id="backToSetupBtn" class="btn btn-soft" type="button">Ve man hinh chinh</button>
+          </div>
+        </header>
+
+        <div class="exam-layout">
+          <aside class="question-nav-wrap">
+            <h3>Danh sach cau</h3>
+            <div id="questionNav" class="question-nav"></div>
+            <div class="legend">
+              <span><i class="dot current"></i> Dang xem</span>
+              <span><i class="dot answered"></i> Da tra loi</span>
+              <span><i class="dot empty"></i> Chua tra loi</span>
+            </div>
+          </aside>
+
+          <article class="question-area">
+            <div class="question-header">
+              <span id="questionIndexLabel" class="badge"></span>
+              <span id="difficultyBadge" class="difficulty"></span>
+            </div>
+            <div id="questionContent" class="question-content"></div>
+            <div id="answerArea" class="answer-area"></div>
+
+            <footer class="question-footer">
+              <button id="prevBtn" class="btn btn-soft" type="button">Cau truoc</button>
+              <button id="nextBtn" class="btn btn-soft" type="button">Cau tiep</button>
+            </footer>
+          </article>
+        </div>
+      </section>
+
+      <section id="resultView" class="panel result-panel">
+        <header class="exam-topbar">
+          <div>
+            <h2 id="reviewTitle">Review bai lam</h2>
+            <p id="resultMeta" class="meta-line"></p>
+          </div>
+          <div class="top-actions">
+            <button id="restartBtn" class="btn btn-primary" type="button">Thi bo de khac</button>
+            <button id="showHistoryAfterResultBtn" class="btn btn-soft" type="button">Xem lich su ID</button>
+          </div>
+        </header>
+
+        <div id="reviewSummary" class="review-summary"></div>
+
+        <div class="exam-layout">
+          <aside class="question-nav-wrap">
+            <h3>Danh sach cau</h3>
+            <div id="reviewNav" class="question-nav"></div>
+            <div class="legend">
+              <span><i class="dot correct"></i> Dung</span>
+              <span><i class="dot wrong"></i> Sai</span>
+              <span><i class="dot unanswered"></i> Chua tra loi</span>
+            </div>
+          </aside>
+
+          <article class="question-area">
+            <div class="question-header">
+              <span id="reviewIndexLabel" class="badge"></span>
+              <span id="reviewDifficultyBadge" class="difficulty"></span>
+            </div>
+            <div id="reviewQuestionContent" class="question-content"></div>
+            <div id="reviewAnswerSection" class="review-answer-section"></div>
+
+            <footer class="question-footer">
+              <button id="reviewPrevBtn" class="btn btn-soft" type="button">Cau truoc</button>
+              <button id="reviewNextBtn" class="btn btn-soft" type="button">Cau tiep</button>
+            </footer>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div id="attemptDetailModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="attemptModalTitle">Chi tiết lần thi</h3>
+          <button id="closeModalBtn" class="btn btn-soft" type="button" style="padding: 4px 8px; font-size: 0.9rem;">Đóng</button>
+        </div>
+        <div id="attemptModalBody" class="modal-body"></div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
