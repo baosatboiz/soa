@@ -52,8 +52,27 @@ async function connectToDatabase() {
   const client = new MongoClient(MONGODB_URI);
   await client.connect();
   db = client.db(DB_NAME);
-  await ensureDatabaseSeeded();
+  
+  // Chỉ chạy seeding nếu biến môi trường SYNC_DATA=true
+  if (process.env.SYNC_DATA === 'true') {
+    console.log('SYNC_DATA is true, seeding database...');
+    await ensureDatabaseSeeded();
+  }
+  
+  // Đảm bảo có index để truy vấn nhanh
+  await ensureIndexes();
+  
   return db;
+}
+
+async function ensureIndexes() {
+  try {
+    await db.collection('users').createIndex({ username: 1 }, { unique: true });
+    await db.collection('questions').createIndex({ questionId: 1 });
+    await db.collection('attempts').createIndex({ userId: 1, submittedAt: -1 });
+  } catch (err) {
+    console.log('Indexes already exist or error creating them:', err.message);
+  }
 }
 
 
