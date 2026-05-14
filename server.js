@@ -53,9 +53,10 @@ async function connectToDatabase() {
   await client.connect();
   db = client.db(DB_NAME);
   
-  // Chỉ chạy seeding nếu biến môi trường SYNC_DATA=true
-  if (process.env.SYNC_DATA === 'true') {
-    console.log('SYNC_DATA is true, seeding database...');
+  // Tự động đồng bộ nếu thiếu dữ liệu hoặc SYNC_DATA=true
+  const count = await db.collection('questions').countDocuments();
+  if (count < 1686 || process.env.SYNC_DATA === 'true') {
+    console.log(`Question count (${count}) is low or SYNC_DATA is true. Seeding database...`);
     await ensureDatabaseSeeded();
   }
   
