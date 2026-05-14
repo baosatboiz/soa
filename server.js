@@ -52,28 +52,8 @@ async function connectToDatabase() {
   const client = new MongoClient(MONGODB_URI);
   await client.connect();
   db = client.db(DB_NAME);
-  
-  // Tự động đồng bộ nếu thiếu dữ liệu hoặc SYNC_DATA=true
-  const count = await db.collection('questions').countDocuments();
-  if (count < 1686 || process.env.SYNC_DATA === 'true') {
-    console.log(`Question count (${count}) is low or SYNC_DATA is true. Seeding database...`);
-    await ensureDatabaseSeeded();
-  }
-  
-  // Đảm bảo có index để truy vấn nhanh
-  await ensureIndexes();
-  
+  await ensureDatabaseSeeded();
   return db;
-}
-
-async function ensureIndexes() {
-  try {
-    await db.collection('users').createIndex({ username: 1 }, { unique: true });
-    await db.collection('questions').createIndex({ questionId: 1 });
-    await db.collection('attempts').createIndex({ userId: 1, submittedAt: -1 });
-  } catch (err) {
-    console.log('Indexes already exist or error creating them:', err.message);
-  }
 }
 
 
