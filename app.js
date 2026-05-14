@@ -429,7 +429,7 @@ function buildExamSets(questions, perSet) {
   };
 
   const total = pools.Easy.length + pools.Medium.length + pools.Hard.length;
-  const setCount = Math.floor(total / perSet);
+  const setCount = Math.ceil(total / perSet);
   const result = [];
 
   for (let i = 0; i < setCount; i += 1) {
@@ -439,18 +439,19 @@ function buildExamSets(questions, perSet) {
       Hard: pools.Hard.length,
     };
 
-    let quota = proportionalQuota(remain, perSet);
-    quota = ensureQuotaFeasible(quota, remain, perSet);
+    const currentPerSet = Math.min(perSet, pools.Easy.length + pools.Medium.length + pools.Hard.length);
+    let quota = proportionalQuota(remain, currentPerSet);
+    quota = ensureQuotaFeasible(quota, remain, currentPerSet);
 
     const selected = [];
     selected.push(...pullMany(pools.Easy, quota.Easy));
     selected.push(...pullMany(pools.Medium, quota.Medium));
     selected.push(...pullMany(pools.Hard, quota.Hard));
 
-    if (selected.length < perSet) {
+    if (selected.length < currentPerSet) {
       const fillOrder = [pools.Easy, pools.Medium, pools.Hard];
       let pointer = 0;
-      while (selected.length < perSet && pointer < 1000) {
+      while (selected.length < currentPerSet && pointer < 1000) {
         const pool = fillOrder[pointer % fillOrder.length];
         const pulled = pullMany(pool, 1);
         if (pulled.length > 0) {
