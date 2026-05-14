@@ -432,9 +432,10 @@ function buildExamSets(questions, perSet) {
     const selected = questions.slice(start, end);
     
     result.push({
-      id: i + 1,
+      id: `SET-${String(i + 1).padStart(2, "0")}`,
       name: `Bộ đề ${i + 1}`,
       questions: selected,
+      distribution: countByDifficulty(selected),
     });
   }
   return result;
