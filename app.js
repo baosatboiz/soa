@@ -422,63 +422,21 @@ function normalizeQuestions(rawQuestions) {
 }
 
 function buildExamSets(questions, perSet) {
-  const pools = {
-    Easy: seededShuffle(questions.filter((q) => q.difficultyLevel === "Easy"), 20261),
-    Medium: seededShuffle(questions.filter((q) => q.difficultyLevel === "Medium"), 20262),
-    Hard: seededShuffle(questions.filter((q) => q.difficultyLevel === "Hard"), 20263),
-  };
-
-  const total = pools.Easy.length + pools.Medium.length + pools.Hard.length;
+  const total = questions.length;
   const setCount = Math.ceil(total / perSet);
   const result = [];
 
   for (let i = 0; i < setCount; i += 1) {
-    const remain = {
-      Easy: pools.Easy.length,
-      Medium: pools.Medium.length,
-      Hard: pools.Hard.length,
-    };
-
-    const currentPerSet = Math.min(perSet, pools.Easy.length + pools.Medium.length + pools.Hard.length);
-    let quota = proportionalQuota(remain, currentPerSet);
-    quota = ensureQuotaFeasible(quota, remain, currentPerSet);
-
-    const selected = [];
-    selected.push(...pullMany(pools.Easy, quota.Easy));
-    selected.push(...pullMany(pools.Medium, quota.Medium));
-    selected.push(...pullMany(pools.Hard, quota.Hard));
-
-    if (selected.length < currentPerSet) {
-      const fillOrder = [pools.Easy, pools.Medium, pools.Hard];
-      let pointer = 0;
-      while (selected.length < currentPerSet && pointer < 1000) {
-        const pool = fillOrder[pointer % fillOrder.length];
-        const pulled = pullMany(pool, 1);
-        if (pulled.length > 0) {
-          selected.push(pulled[0]);
-        }
-        pointer += 1;
-      }
-    }
-
-    const ordered = selected
-      .sort((a, b) => {
-        const diffA = difficultyOrder[a.difficultyLevel] || 99;
-        const diffB = difficultyOrder[b.difficultyLevel] || 99;
-        if (diffA !== diffB) {
-          return diffA - diffB;
-        }
-        return a.questionId.localeCompare(b.questionId);
-      })
-      .slice(0, perSet);
-
+    const start = i * perSet;
+    const end = Math.min(start + perSet, total);
+    const selected = questions.slice(start, end);
+    
     result.push({
-      id: `SET-${String(i + 1).padStart(2, "0")}`,
-      questions: ordered,
-      distribution: countByDifficulty(ordered),
+      id: i + 1,
+      name: `Bộ đề ${i + 1}`,
+      questions: selected,
     });
   }
-
   return result;
 }
 
