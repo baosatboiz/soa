@@ -56828,5 +56828,761 @@
         "correct": false
       }
     ]
+  },
+  {
+    "id": "5d85ae3e-55b2-400d-ad18-fb4c04e82ada",
+    "questionId": "b08d8f24-0ab6-464b-a5b1-d949ec8d5763",
+    "content": "<p>Trong WSDL, phần PortType dùng để làm gì?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Easy",
+    "displayOrder": 1640,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "9c552fa1-ae08-46cd-9ee3-1d0781ee97c3",
+        "content": "<p>Chứa c&aacute;c th&ocirc;ng tin bổ sung về message</p>",
+        "questionId": "b08d8f24-0ab6-464b-a5b1-d949ec8d5763",
+        "correct": false
+      },
+      {
+        "id": "c2f95dd4-a8a1-44a0-8eda-e55420b06be9",
+        "content": "<p>Chứa th&ocirc;ng tin về t&agrave;i nguy&ecirc;n của web service</p>",
+        "questionId": "b08d8f24-0ab6-464b-a5b1-d949ec8d5763",
+        "correct": false
+      },
+      {
+        "id": "85145632-62b3-4c0b-afb6-9afecf4e1c9e",
+        "content": "<p>Định nghĩa c&aacute;c phương thức v&agrave; kiểu dữ liệu</p>",
+        "questionId": "b08d8f24-0ab6-464b-a5b1-d949ec8d5763",
+        "correct": true
+      },
+      {
+        "id": "28730c24-9a2a-4977-9433-9ef84b554579",
+        "content": "<p>Chứa c&aacute;c thư viện lập tr&igrave;nh</p>",
+        "questionId": "b08d8f24-0ab6-464b-a5b1-d949ec8d5763",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "a713f221-97b0-4516-9804-6ebbd37760c7",
+    "questionId": "a2e0947d-4430-42a2-92e2-6d31c4dbca28",
+    "content": "<p> Cho định nghĩa WSDL: </p><p><br></p><p><br></p><p><?xml version=\"1.0\" encoding=\"UTF-8\"?></p><p><definitions xmlns=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:tns=\"http://www.example.com/accountRegistration\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/wsdl/soap/\" name=\"AccountRegistration\" targetNamespace=\"http://www.example.com/accountRegistration\"></p><p>  <types></p><p>    <xsd:schema elementFormDefault=\"qualified\" targetNamespace=\"http://www.example.com/accountRegistration\"></p><p>      <xsd:element name=\"Account\"></p><p>        <xsd:complexType></p><p>          <xsd:sequence></p><p>            <xsd:element name=\"username\" type=\"xsd:string\"/></p><p>            <xsd:element name=\"password\" type=\"xsd:string\"/></p><p>          </xsd:sequence></p><p>        </xsd:complexType></p><p>      </xsd:element></p><p>      <xsd:element name=\"AccountResponse\"></p><p>        <xsd:complexType></p><p>          <xsd:sequence></p><p>            <xsd:element name=\"success\" type=\"xsd:boolean\"/></p><p>          </xsd:sequence></p><p>        </xsd:complexType></p><p>      </xsd:element></p><p>    </xsd:schema></p><p>  </types></p><p>  <message name=\"RegisterAccount\"></p><p>    <part name=\"parameters\" element=\"tns:Account\"/></p><p>  </message></p><p>  <message name=\"RegisterAccountResponse\"></p><p>    <part name=\"parameters\" element=\"tns:AccountResponse\"/></p><p>  </message></p><p>  <portType name=\"AccountRegistrationPortType\"></p><p>    <operation name=\"RegisterAccount\"></p><p>      <input message=\"tns:RegisterAccount\"/></p><p>      <output message=\"tns:RegisterAccountResponse\"/></p><p>    </operation></p><p>  </portType></p><p>  <binding name=\"AccountRegistrationBinding\" type=\"tns:AccountRegistrationPortType\"></p><p>    <soap:binding transport=\"http://schemas.xmlsoap.org/soap/http\"/></p><p>    <operation name=\"RegisterAccount\"></p><p>      <soap:operation soapAction=\"http://www.example.com/accountRegistration/RegisterAccount\"/></p><p>      <input></p><p>        <soap:body use=\"literal\"/></p><p>      </input></p><p>      <output></p><p>        <soap:body use=\"literal\"/></p><p>      </output></p><p>    </operation></p><p>  </binding></p><p>  <service name=\"AccountRegistrationService\"></p><p>    <port name=\"AccountRegistrationPort\" binding=\"tns:AccountRegistrationBinding\"></p><p>      <soap:address location=\"http://www.example.com/accountRegistration\"/></p><p>    </port></p><p>  </service></p><p></definitions> </p><p><br></p><p><br></p><p>Thực thi dịch vụ tên gì ?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Easy",
+    "displayOrder": 1515,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "44b6d17a-f706-4448-b4fc-cdb85de3cc15",
+        "content": "<p>AccountRegistrationService</p>",
+        "questionId": "a2e0947d-4430-42a2-92e2-6d31c4dbca28",
+        "correct": false
+      },
+      {
+        "id": "c89b387b-a6a2-49d1-89c3-6a6c71d26f24",
+        "content": "<p>AccountRegistration</p>",
+        "questionId": "a2e0947d-4430-42a2-92e2-6d31c4dbca28",
+        "correct": false
+      },
+      {
+        "id": "1f5f00e9-79ed-40fc-b01b-65e62518cf0c",
+        "content": "<p>AccountRegistrationPortType</p>",
+        "questionId": "a2e0947d-4430-42a2-92e2-6d31c4dbca28",
+        "correct": false
+      },
+      {
+        "id": "6d02e3b5-f48b-464c-a87f-3eb743116596",
+        "content": "<p>AccountRegistrationBinding</p>",
+        "questionId": "a2e0947d-4430-42a2-92e2-6d31c4dbca28",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "42687978-7185-49b9-9026-93369c60cc93",
+    "questionId": "1821dff8-d27d-4e60-a21d-f8a1f286a99c",
+    "content": "<p>Trong WSDL, phần Binding có thể sử dụng để kết nối với giao thức nào?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Easy",
+    "displayOrder": 1430,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "dd75cf06-252c-4dd4-a718-b594ed7a9417",
+        "content": "<p>SMTP</p>",
+        "questionId": "1821dff8-d27d-4e60-a21d-f8a1f286a99c",
+        "correct": false
+      },
+      {
+        "id": "f590c669-ff1f-4527-b393-d3647eddfa85",
+        "content": "<p>FTP</p>",
+        "questionId": "1821dff8-d27d-4e60-a21d-f8a1f286a99c",
+        "correct": false
+      },
+      {
+        "id": "d65f8c63-2762-4e40-b408-e125154bae0e",
+        "content": "<p>HTTP</p>",
+        "questionId": "1821dff8-d27d-4e60-a21d-f8a1f286a99c",
+        "correct": true
+      },
+      {
+        "id": "1da67536-feba-4e47-9235-0a80c67f0d0f",
+        "content": "<p>SSH</p>",
+        "questionId": "1821dff8-d27d-4e60-a21d-f8a1f286a99c",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "5ac11838-f559-43d7-bcce-85ad51852fbc",
+    "questionId": "aae24744-5809-44f9-829d-2439a2813339",
+    "content": "<p>Write-Behind pattern có rủi ro chính nào cần đặc biệt lưu ý?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Medium",
+    "displayOrder": 1230,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "615d7e71-a36a-42ef-8d21-432c4952bddd",
+        "content": "<p>Nếu Redis crash trước khi async write hoàn thành vào DB, data ghi trong Redis sẽ bị mất</p>",
+        "questionId": "aae24744-5809-44f9-829d-2439a2813339",
+        "correct": true
+      },
+      {
+        "id": "e41999e4-1962-4fa1-afb8-4d9580e97e96",
+        "content": "<p>Write-Behind làm tăng đáng kể write latency so với Write-Through</p>",
+        "questionId": "aae24744-5809-44f9-829d-2439a2813339",
+        "correct": false
+      },
+      {
+        "id": "9e0dc0e0-894d-4b26-a45d-7e5dba1a156e",
+        "content": "<p>DB và Redis không thể sync khi có concurrent write từ nhiều service instance</p>",
+        "questionId": "aae24744-5809-44f9-829d-2439a2813339",
+        "correct": false
+      },
+      {
+        "id": "e8437814-a220-448c-a0ed-62d7c6724f35",
+        "content": "<p>Write-Behind không hỗ trợ TTL, gây tích lũy data lỗi thời trong cache</p>",
+        "questionId": "aae24744-5809-44f9-829d-2439a2813339",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "7c0b05e1-cc35-4076-aefc-6703f3da4d53",
+    "questionId": "fccde6f5-06ea-4911-8c2e-f97cf0dc2d25",
+    "content": "<p>Trong WSDL, một phương thức được định nghĩa trong phần nào của PortType?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Easy",
+    "displayOrder": 1526,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "904f1d83-d83e-425d-8091-044a2c0ff0c0",
+        "content": "<p>Output</p>",
+        "questionId": "fccde6f5-06ea-4911-8c2e-f97cf0dc2d25",
+        "correct": false
+      },
+      {
+        "id": "8963891f-ccf3-49c9-a273-a98a3313d726",
+        "content": "<p>Input</p>",
+        "questionId": "fccde6f5-06ea-4911-8c2e-f97cf0dc2d25",
+        "correct": false
+      },
+      {
+        "id": "4b1cc8c4-a1f6-40ef-8642-2889872c1c00",
+        "content": "<p>Operation</p>",
+        "questionId": "fccde6f5-06ea-4911-8c2e-f97cf0dc2d25",
+        "correct": true
+      },
+      {
+        "id": "767fbc00-4e00-42a4-b525-f610a03b3ff6",
+        "content": "<p>Fault</p>",
+        "questionId": "fccde6f5-06ea-4911-8c2e-f97cf0dc2d25",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "21105fc9-d4c5-41e4-94d8-0006776a3ef9",
+    "questionId": "2dce7952-bdae-4cf9-9e63-f15076cd8e01",
+    "content": "<p>Trong WSDL, một message có thể chứa bao nhiêu phần?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Easy",
+    "displayOrder": 1431,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "dcd3cf8d-a946-4493-b775-aa22a865b501",
+        "content": "<p>Kh&ocirc;ng giới hạn</p>",
+        "questionId": "2dce7952-bdae-4cf9-9e63-f15076cd8e01",
+        "correct": true
+      },
+      {
+        "id": "6bdbe061-29ef-46cc-a461-8dc73bebb5cf",
+        "content": "<p>Tối đa l&agrave; 20 phần</p>",
+        "questionId": "2dce7952-bdae-4cf9-9e63-f15076cd8e01",
+        "correct": false
+      },
+      {
+        "id": "b3fd1c38-3c98-4079-9177-2f29e5287e14",
+        "content": "<p>Tối đa l&agrave; 100 phần</p>",
+        "questionId": "2dce7952-bdae-4cf9-9e63-f15076cd8e01",
+        "correct": false
+      },
+      {
+        "id": "5156025b-4d49-4503-86fa-614744e59ecd",
+        "content": "<p>Chỉ một phần</p>",
+        "questionId": "2dce7952-bdae-4cf9-9e63-f15076cd8e01",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "25b30b6f-72e6-401b-9f2d-a8e2af9e736d",
+    "questionId": "defa5602-cf8d-4b32-a7f9-37e91c6da0c8",
+    "content": "<p>Những bước nào mô tả đúng luồng xử lý command trong event sourcing?</p>",
+    "type": "multipleChoice",
+    "difficultyLevel": "Medium",
+    "displayOrder": 205,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "af2b931c-a9f3-4a74-bcdc-8aa883a3ef56",
+        "content": "<p>Nhận command, validate và quyết định các thay đổi</p>",
+        "questionId": "defa5602-cf8d-4b32-a7f9-37e91c6da0c8",
+        "correct": true
+      },
+      {
+        "id": "a2c0697b-335c-4e4a-88ce-db2280cf8fb2",
+        "content": "<p>Ném exception nếu command không hợp lệ</p>",
+        "questionId": "defa5602-cf8d-4b32-a7f9-37e91c6da0c8",
+        "correct": false
+      },
+      {
+        "id": "8bd512cf-d14c-4fad-9203-c517a8f70df4",
+        "content": "<p>Tạo ra danh sách event tương ứng mà chưa cập nhật trạng thái</p>",
+        "questionId": "defa5602-cf8d-4b32-a7f9-37e91c6da0c8",
+        "correct": true
+      },
+      {
+        "id": "e83e2c06-ffc0-4d27-9f68-f1701bb7ea5a",
+        "content": "<p>Lưu event vào event store và sau đó apply để cập nhật aggregate</p>",
+        "questionId": "defa5602-cf8d-4b32-a7f9-37e91c6da0c8",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "537996b8-7d87-4740-a1c5-3e55683427c7",
+    "questionId": "e4fb5bfe-b81c-41cf-95c3-d0010271d9ea",
+    "content": "<p>Trong WSDL, thành phần 'binding' đảm nhiệm vai trò gì?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Easy",
+    "displayOrder": 1392,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "05d1f03c-9daa-443c-957d-4ea1f9568957",
+        "content": "<p>Định nghĩa kiểu dữ liệu d&ugrave;ng trong th&ocirc;ng điệp</p>",
+        "questionId": "e4fb5bfe-b81c-41cf-95c3-d0010271d9ea",
+        "correct": false
+      },
+      {
+        "id": "5dd156f3-6552-44cc-a421-cbee5ddd3a15",
+        "content": "<p>M&ocirc; tả &aacute;nh xạ từ portType trừu tượng sang chi tiết giao thức/vận chuyển (vd. SOAP/HTTP)</p>",
+        "questionId": "e4fb5bfe-b81c-41cf-95c3-d0010271d9ea",
+        "correct": true
+      },
+      {
+        "id": "a5506296-3669-4ac3-9599-5f546873268d",
+        "content": "<p>Khai b&aacute;o địa chỉ mạng cụ thể để truy cập dịch vụ</p>",
+        "questionId": "e4fb5bfe-b81c-41cf-95c3-d0010271d9ea",
+        "correct": false
+      },
+      {
+        "id": "8bd498b8-d07c-4263-a949-68043ed0c4d5",
+        "content": "<p>Định nghĩa dịch vụ con (sub-service)</p>",
+        "questionId": "e4fb5bfe-b81c-41cf-95c3-d0010271d9ea",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "098f37cd-5702-43ad-a065-dc809424ab1e",
+    "questionId": "7457d533-5bd6-4071-8281-68a903c8ec38",
+    "content": "<p> Cho định nghĩa WSDL: </p><p><br></p><p><br></p><p><?xml version=\"1.0\" encoding=\"UTF-8\"?></p><p><definitions xmlns=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:tns=\"http://www.example.com/accountRegistration\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/wsdl/soap/\" name=\"AccountRegistration\" targetNamespace=\"http://www.example.com/accountRegistration\"></p><p>  <types></p><p>    <xsd:schema elementFormDefault=\"qualified\" targetNamespace=\"http://www.example.com/accountRegistration\"></p><p>      <xsd:element name=\"Account\"></p><p>        <xsd:complexType></p><p>          <xsd:sequence></p><p>            <xsd:element name=\"username\" type=\"xsd:string\"/></p><p>            <xsd:element name=\"password\" type=\"xsd:string\"/></p><p>          </xsd:sequence></p><p>        </xsd:complexType></p><p>      </xsd:element></p><p>      <xsd:element name=\"AccountResponse\"></p><p>        <xsd:complexType></p><p>          <xsd:sequence></p><p>            <xsd:element name=\"success\" type=\"xsd:boolean\"/></p><p>          </xsd:sequence></p><p>        </xsd:complexType></p><p>      </xsd:element></p><p>    </xsd:schema></p><p>  </types></p><p>  <message name=\"RegisterAccount\"></p><p>    <part name=\"parameters\" element=\"tns:Account\"/></p><p>  </message></p><p>  <message name=\"RegisterAccountResponse\"></p><p>    <part name=\"parameters\" element=\"tns:AccountResponse\"/></p><p>  </message></p><p>  <portType name=\"AccountRegistrationPortType\"></p><p>    <operation name=\"RegisterAccount\"></p><p>      <input message=\"tns:RegisterAccount\"/></p><p>      <output message=\"tns:RegisterAccountResponse\"/></p><p>    </operation></p><p>  </portType></p><p>  <binding name=\"AccountRegistrationBinding\" type=\"tns:AccountRegistrationPortType\"></p><p>    <soap:binding transport=\"http://schemas.xmlsoap.org/soap/http\"/></p><p>    <operation name=\"RegisterAccount\"></p><p>      <soap:operation soapAction=\"http://www.example.com/accountRegistration/RegisterAccount\"/></p><p>      <input></p><p>        <soap:body use=\"literal\"/></p><p>      </input></p><p>      <output></p><p>        <soap:body use=\"literal\"/></p><p>      </output></p><p>    </operation></p><p>  </binding></p><p>  <service name=\"AccountRegistrationService\"></p><p>    <port name=\"AccountRegistrationPort\" binding=\"tns:AccountRegistrationBinding\"></p><p>      <soap:address location=\"http://www.example.com/accountRegistration\"/></p><p>    </port></p><p>  </service></p><p></definitions> </p><p><br></p><p><br></p><p>Đâu là phương thức mà dịch vụ cung cấp ?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Easy",
+    "displayOrder": 1551,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "6bb5640c-e354-4860-9db0-b8006e293106",
+        "content": "<p>Register</p>",
+        "questionId": "7457d533-5bd6-4071-8281-68a903c8ec38",
+        "correct": false
+      },
+      {
+        "id": "5203edfc-45d6-45d2-90aa-f3504eca564e",
+        "content": "<p>AccountRegistrationPortType</p>",
+        "questionId": "7457d533-5bd6-4071-8281-68a903c8ec38",
+        "correct": false
+      },
+      {
+        "id": "8b48f998-f337-4a98-a48c-7376406ed050",
+        "content": "<p>RegisterAccount</p>",
+        "questionId": "7457d533-5bd6-4071-8281-68a903c8ec38",
+        "correct": true
+      },
+      {
+        "id": "e8461cee-c188-4a84-88f1-4e7713a331be",
+        "content": "<p>AccountRegistrationService</p>",
+        "questionId": "7457d533-5bd6-4071-8281-68a903c8ec38",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "a7054e39-f8dc-4508-82cc-76ff1d3bf1cd",
+    "questionId": "76399c9d-b9d3-427c-8f06-e76ed87b926f",
+    "content": "<p>Invariants (bất biến) trong aggregate cần được đảm bảo khi nào?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Hard",
+    "displayOrder": 176,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "9517a0c4-34b8-445b-b89a-bcbf9af6742f",
+        "content": "<p>Vào cuối mỗi giao dịch cập nhật aggregate</p>",
+        "questionId": "76399c9d-b9d3-427c-8f06-e76ed87b926f",
+        "correct": true
+      },
+      {
+        "id": "d2e7d2d3-4765-4452-bcb9-b837ca3cbcb4",
+        "content": "<p>Vào cuối mỗi ngày</p>",
+        "questionId": "76399c9d-b9d3-427c-8f06-e76ed87b926f",
+        "correct": false
+      },
+      {
+        "id": "e079898d-e248-4c59-b8de-992fb8c6428e",
+        "content": "<p>Vào lúc khởi động hệ thống</p>",
+        "questionId": "76399c9d-b9d3-427c-8f06-e76ed87b926f",
+        "correct": false
+      },
+      {
+        "id": "cf254cc2-faa4-418e-abe5-79acf42056bf",
+        "content": "<p>Chỉ khi deploy phiên bản mới</p>",
+        "questionId": "76399c9d-b9d3-427c-8f06-e76ed87b926f",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "f9d2367c-58cc-4aaa-a22b-605dce8911c9",
+    "questionId": "e5cbf5d9-2fd9-4a06-952c-ec1cd160d890",
+    "content": "<p>Token revocation bằng blacklist Redis hoạt động theo cơ chế nào?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Medium",
+    "displayOrder": 1206,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "5b4002dd-90e3-41a9-9a7e-f256dc8c4d8b",
+        "content": "<p>Khi logout hoặc breach, token được lưu vào blacklist Redis; mỗi request service check token có trong blacklist không</p>",
+        "questionId": "e5cbf5d9-2fd9-4a06-952c-ec1cd160d890",
+        "correct": true
+      },
+      {
+        "id": "5aed08d8-a0db-4731-aa98-2cc2155edb37",
+        "content": "<p>Redis lưu toàn bộ token hợp lệ; chỉ token trong whitelist mới được chấp nhận</p>",
+        "questionId": "e5cbf5d9-2fd9-4a06-952c-ec1cd160d890",
+        "correct": false
+      },
+      {
+        "id": "5cd64938-186a-451e-ad06-85835bb1b000",
+        "content": "<p>Redis tự động expire token theo TTL cấu hình mà không cần application xử lý</p>",
+        "questionId": "e5cbf5d9-2fd9-4a06-952c-ec1cd160d890",
+        "correct": false
+      },
+      {
+        "id": "5e467dfa-4944-4ec5-b700-fd5b711517dd",
+        "content": "<p>Token được hash trước khi lưu vào Redis để tăng bảo mật</p>",
+        "questionId": "e5cbf5d9-2fd9-4a06-952c-ec1cd160d890",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "096a1361-82dc-40d4-8d0b-553c97b8f0e3",
+    "questionId": "3537a315-918b-45d3-be0d-7fa0fd4641cf",
+    "content": "<p>Vấn đề \"Dual Write\" mà CDC giải quyết là gì?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Easy",
+    "displayOrder": 128,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "7f77ad7d-fded-402c-ad71-8802126366f4",
+        "content": "<p>Ghi dữ liệu vào hai database cùng schema để redundancy</p>",
+        "questionId": "3537a315-918b-45d3-be0d-7fa0fd4641cf",
+        "correct": false
+      },
+      {
+        "id": "30dd80ab-30f9-43df-b411-71dc9e24ee81",
+        "content": "<p>Ghi vào DB và publish event lên message broker là hai thao tác riêng biệt — không atomic; service có thể crash sau khi ghi DB nhưng trước khi publish event, gây mất event hoặc inconsistency</p>",
+        "questionId": "3537a315-918b-45d3-be0d-7fa0fd4641cf",
+        "correct": true
+      },
+      {
+        "id": "9634801f-6c47-4967-911c-5bb5f2b027f9",
+        "content": "<p>Đồng bộ dữ liệu giữa database master và replica</p>",
+        "questionId": "3537a315-918b-45d3-be0d-7fa0fd4641cf",
+        "correct": false
+      },
+      {
+        "id": "5733ac2c-d0d4-48db-8637-6a860be80d6c",
+        "content": "<p>Ghi cùng data hai lần để validate không có lỗi</p>",
+        "questionId": "3537a315-918b-45d3-be0d-7fa0fd4641cf",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "ed2d1994-0fd1-432e-8979-af6de6ccb34b",
+    "questionId": "33e44c58-f411-4f3e-9ee7-94985bd9feee",
+    "content": "<p>Nếu không có log correlation trong distributed microservice, vấn đề chính nào phát sinh khi debug incident?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Medium",
+    "displayOrder": 1282,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "61e350da-7da3-404f-8899-c41d7e46c125",
+        "content": "<p>Centralized log storage không thể nhận log từ nhiều service khác nhau cùng lúc</p>",
+        "questionId": "33e44c58-f411-4f3e-9ee7-94985bd9feee",
+        "correct": false
+      },
+      {
+        "id": "c908b41c-42ee-4ad3-bb05-67493b84aaf0",
+        "content": "<p>Service không thể ghi log khi không có correlationId được inject vào request context</p>",
+        "questionId": "33e44c58-f411-4f3e-9ee7-94985bd9feee",
+        "correct": false
+      },
+      {
+        "id": "e15fc657-8d6f-4aa1-8799-23d36d91da2b",
+        "content": "<p>Metric alert không trigger được do thiếu log metadata liên quan</p>",
+        "questionId": "33e44c58-f411-4f3e-9ee7-94985bd9feee",
+        "correct": false
+      },
+      {
+        "id": "c61ed57d-d4a2-4cd6-8401-cbebc457a4b7",
+        "content": "<p>Không thể ghép log của cùng một request từ nhiều service — chỉ thấy noise từ tất cả concurrent request lẫn lộn</p>",
+        "questionId": "33e44c58-f411-4f3e-9ee7-94985bd9feee",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "651a0109-0a72-47fc-a4f4-1eaab20b3011",
+    "questionId": "f0d13e07-2c47-4774-962c-1298992c724f",
+    "content": "<p>Trong WSDL, phần SOAP Body chứa thông tin gì?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Easy",
+    "displayOrder": 1639,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "8ae2de8d-550e-4302-a3e6-6b7ce18c5045",
+        "content": "<p>Th&ocirc;ng tin về t&agrave;i nguy&ecirc;n của web service</p>",
+        "questionId": "f0d13e07-2c47-4774-962c-1298992c724f",
+        "correct": false
+      },
+      {
+        "id": "c1282786-8f37-484c-b797-53b9cdc54de6",
+        "content": "<p>Phần header của message</p>",
+        "questionId": "f0d13e07-2c47-4774-962c-1298992c724f",
+        "correct": false
+      },
+      {
+        "id": "7b3dd770-d4f5-4ce4-ab2b-bc5f3ae6a205",
+        "content": "<p>Dữ liệu của message</p>",
+        "questionId": "f0d13e07-2c47-4774-962c-1298992c724f",
+        "correct": true
+      },
+      {
+        "id": "f1d15826-f054-41cd-8d53-534e54c48394",
+        "content": "<p>C&aacute;c th&ocirc;ng tin bổ sung về message</p>",
+        "questionId": "f0d13e07-2c47-4774-962c-1298992c724f",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "f30ee092-588f-43c5-83ab-4195a58aae59",
+    "questionId": "866aa67a-55a3-45d9-8b67-816f2497c1d7",
+    "content": "<p>Outbox Pattern hoạt động theo nguyên lý nào?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Easy",
+    "displayOrder": 5,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "45ec7285-ea06-45ed-ab09-ad0c6c1d1441",
+        "content": "<p>Service publish event trực tiếp lên broker trong cùng DB transaction</p>",
+        "questionId": "866aa67a-55a3-45d9-8b67-816f2497c1d7",
+        "correct": false
+      },
+      {
+        "id": "b43e9031-6914-4e81-ac59-1b673997d7bb",
+        "content": "<p>Event được lưu vào Redis trước, sau đó worker đọc và publish lên broker</p>",
+        "questionId": "866aa67a-55a3-45d9-8b67-816f2497c1d7",
+        "correct": false
+      },
+      {
+        "id": "fe69474e-ebf5-4ff8-859f-b2378286122e",
+        "content": "<p>Thay vì publish event trực tiếp, service ghi event vào bảng Outbox trong cùng local DB transaction với business data; một Outbox Processor riêng đọc bảng Outbox và publish lên message broker</p>",
+        "questionId": "866aa67a-55a3-45d9-8b67-816f2497c1d7",
+        "correct": true
+      },
+      {
+        "id": "65c1b8de-a7b4-4b12-9afb-8bee9baee645",
+        "content": "<p>Service lưu event vào file log trên disk, broker tự đọc file đó</p>",
+        "questionId": "866aa67a-55a3-45d9-8b67-816f2497c1d7",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "db6d3463-48f6-44db-ab93-00d6b04b0d06",
+    "questionId": "627e0197-49c1-4d6e-be9b-a618b65aab48",
+    "content": "<p>Tại sao ghi event vào bảng Outbox trong cùng DB transaction với business data lại đảm bảo atomicity?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Medium",
+    "displayOrder": 6,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "2a66dc0a-3904-4a40-9f53-ab0799871813",
+        "content": "<p>Vì database hỗ trợ XA transaction với message broker</p>",
+        "questionId": "627e0197-49c1-4d6e-be9b-a618b65aab48",
+        "correct": false
+      },
+      {
+        "id": "a86b109c-ecbe-4201-906f-8bff3d1a973f",
+        "content": "<p>Vì bảng Outbox nằm trên database riêng biệt không bị ảnh hưởng</p>",
+        "questionId": "627e0197-49c1-4d6e-be9b-a618b65aab48",
+        "correct": false
+      },
+      {
+        "id": "137d3dab-6b5e-406e-be82-cbb3d7a9bd15",
+        "content": "<p>Cả hai thao tác (update business data + insert Outbox record) thuộc cùng một local ACID transaction — hoặc cả hai thành công, hoặc cả hai rollback; không thể có trường hợp data được lưu mà event không được ghi hoặc ngược lại</p>",
+        "questionId": "627e0197-49c1-4d6e-be9b-a618b65aab48",
+        "correct": true
+      },
+      {
+        "id": "fb8cb446-c7ad-43cb-bbd5-029104066319",
+        "content": "<p>Vì message broker có thể đọc trực tiếp từ database transaction log</p>",
+        "questionId": "627e0197-49c1-4d6e-be9b-a618b65aab48",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "8c0707b9-5031-470e-9432-763bf1ae8b0e",
+    "questionId": "a406547f-ef0e-40aa-bd3a-10aa25b4e3a7",
+    "content": "<p> Cho định nghĩa WSDL: </p><p><br></p><p><br></p><p><wsdl:definitions xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:tns=\"http://www.example.com/onlinecharging\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/wsdl/soap/\" name=\"OnlineCharging\" targetNamespace=\"http://www.example.com/onlinecharging\"></p><p>  <wsdl:types></p><p>    <xsd:schema elementFormDefault=\"qualified\" targetNamespace=\"http://www.example.com/onlinecharging\"></p><p>      <xsd:element name=\"Customer\"></p><p>        <xsd:complexType></p><p>          <xsd:sequence></p><p>            <xsd:element name=\"CustomerId\" type=\"xsd:string\" minOccurs=\"1\" /></p><p>            <xsd:element name=\"CustomerName\" type=\"xsd:string\" minOccurs=\"1\" /></p><p>          </xsd:sequence></p><p>        </xsd:complexType></p><p>      </xsd:element></p><p>      <xsd:element name=\"Charge\"></p><p>        <xsd:complexType></p><p>          <xsd:sequence></p><p>            <xsd:element name=\"CustomerId\" type=\"xsd:string\" minOccurs=\"1\" /></p><p>            <xsd:element name=\"Amount\" type=\"xsd:double\" minOccurs=\"1\" /></p><p>          </xsd:sequence></p><p>        </xsd:complexType></p><p>      </xsd:element></p><p>      <xsd:element name=\"ChargeResult\"></p><p>        <xsd:complexType></p><p>          <xsd:sequence></p><p>            <xsd:element name=\"Status\" type=\"xsd:string\" minOccurs=\"1\" /></p><p>            <xsd:element name=\"Message\" type=\"xsd:string\" minOccurs=\"1\" /></p><p>          </xsd:sequence></p><p>        </xsd:complexType></p><p>      </xsd:element></p><p>    </xsd:schema></p><p>  </wsdl:types></p><p>  <wsdl:message name=\"ChargeRequest\"></p><p>    <wsdl:part name=\"customer\" element=\"tns:Customer\" /></p><p>    <wsdl:part name=\"charge\" element=\"tns:Charge\" /></p><p>  </wsdl:message></p><p>  <wsdl:message name=\"ChargeResponse\"></p><p>    <wsdl:part name=\"result\" element=\"tns:ChargeResult\" /></p><p>  </wsdl:message></p><p>  <wsdl:portType name=\"OnlineChargingPortType\"></p><p>    <wsdl:operation name=\"Charge\"></p><p>      <wsdl:input message=\"tns:ChargeRequest\" /></p><p>      <wsdl:output message=\"tns:ChargeResponse\" /></p><p>    </wsdl:operation></p><p>  </wsdl:portType></p><p>  <wsdl:binding name=\"OnlineChargingBinding\" type=\"tns:OnlineChargingPortType\"></p><p>    <soap:binding transport=\"http://schemas.xmlsoap.org/soap/http\" /></p><p>    <wsdl:operation name=\"Charge\"></p><p>      <soap:operation soapAction=\"http://www.example.com/onlinecharging/Charge\" /></p><p>      <wsdl:input></p><p>        <soap:body use=\"literal\" /></p><p>      </wsdl:input></p><p>      <wsdl:output></p><p>        <soap:body use=\"literal\" /></p><p>      </wsdl:output></p><p>    </wsdl:operation></p><p>  </wsdl:binding></p><p>  <wsdl:service name=\"OnlineChargingService\"></p><p>    <wsdl:port name=\"OnlineChargingPort\" binding=\"tns:OnlineChargingBinding\"></p><p>      <soap:address location=\"http://www.example.com/onlinecharging\" /></p><p>    </wsdl:port></p><p>  </wsdl:service></p><p></wsdl:definitions> </p><p><br></p><p><br></p><p>Tên phần tử đại diện cho kết quả của giao dịch nạp tiền trong tệp WSDL là gì?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Easy",
+    "displayOrder": 1500,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "2b448365-bfbe-439c-8554-a327f545b4ac",
+        "content": "<p>ChargeResponse</p>",
+        "questionId": "a406547f-ef0e-40aa-bd3a-10aa25b4e3a7",
+        "correct": false
+      },
+      {
+        "id": "ebf530eb-a294-48b7-88b7-16d88c0a5619",
+        "content": "<p>ChargeResult</p>",
+        "questionId": "a406547f-ef0e-40aa-bd3a-10aa25b4e3a7",
+        "correct": true
+      },
+      {
+        "id": "093e32cf-1e25-450f-a586-ff55d9699dcc",
+        "content": "<p>ChargeData</p>",
+        "questionId": "a406547f-ef0e-40aa-bd3a-10aa25b4e3a7",
+        "correct": false
+      },
+      {
+        "id": "200393fd-9f9e-45ce-be84-16c0f65755c5",
+        "content": "<p>ChargeDetails</p>",
+        "questionId": "a406547f-ef0e-40aa-bd3a-10aa25b4e3a7",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "ed8d2ff4-5ee5-49a8-a0c5-81a7e38af7e6",
+    "questionId": "9bc000a8-7ee6-4267-84a4-46adc67ffe0d",
+    "content": "<p>Tại sao PUT idempotent nhưng POST thường không?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Medium",
+    "displayOrder": 410,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "95a07e13-5eef-4ace-ae53-cbe6a700d49a",
+        "content": "<p>PUT replace toàn bộ resource với cùng input → same state; POST thường create new với side effect</p>",
+        "questionId": "9bc000a8-7ee6-4267-84a4-46adc67ffe0d",
+        "correct": true
+      },
+      {
+        "id": "77827460-40ad-49ce-a78d-3edac424f588",
+        "content": "<p>PUT chỉ dùng cho GET-like operations</p>",
+        "questionId": "9bc000a8-7ee6-4267-84a4-46adc67ffe0d",
+        "correct": false
+      },
+      {
+        "id": "811b7c9b-249e-4b92-ba03-6c9b7c3aad54",
+        "content": "<p>POST không hỗ trợ body</p>",
+        "questionId": "9bc000a8-7ee6-4267-84a4-46adc67ffe0d",
+        "correct": false
+      },
+      {
+        "id": "02bf173b-7a54-46d3-94e9-723bd4323e39",
+        "content": "<p>PUT không cache được</p>",
+        "questionId": "9bc000a8-7ee6-4267-84a4-46adc67ffe0d",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "c466f9d4-11a3-42fa-90d1-ca69e27de212",
+    "questionId": "441ab3b1-63d9-4f95-bb68-bb86b1f55cdb",
+    "content": "<p>Loose coupling trong dịch vụ web là gì?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Easy",
+    "displayOrder": 1573,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "1538339a-a884-42ac-8f9d-f40473a2223e",
+        "content": "<p>C&aacute;c th&agrave;nh phần của dịch vụ web hoạt động độc lập với nhau</p>",
+        "questionId": "441ab3b1-63d9-4f95-bb68-bb86b1f55cdb",
+        "correct": false
+      },
+      {
+        "id": "eddc38d0-38f3-493d-8f0b-c7ddf0958264",
+        "content": "<p>C&aacute;c th&agrave;nh phần của dịch vụ web &iacute;t  phụ thuộc v&agrave;o nhau</p>",
+        "questionId": "441ab3b1-63d9-4f95-bb68-bb86b1f55cdb",
+        "correct": true
+      },
+      {
+        "id": "c7e9e8a6-d8e4-4242-b328-3dc999ba0300",
+        "content": "<p>C&aacute;c th&agrave;nh phần của dịch vụ web phụ thuộc chặt chẽ với nhau</p>",
+        "questionId": "441ab3b1-63d9-4f95-bb68-bb86b1f55cdb",
+        "correct": false
+      },
+      {
+        "id": "c81ee9fe-1436-4c24-87af-f41d15e5b4a7",
+        "content": "<p>C&aacute;c th&agrave;nh phần của dịch vụ web được triển khai tr&ecirc;n nhiều m&aacute;y chủ kh&aacute;c nhau</p>",
+        "questionId": "441ab3b1-63d9-4f95-bb68-bb86b1f55cdb",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "cc782f92-4934-4633-a87e-485b0d801c4f",
+    "questionId": "63c93ef0-7bdd-4d74-b2ee-cee7cd25c0f3",
+    "content": "<p>Phương thức load balancing nào trong Nginx đảm bảo request từ cùng một client luôn đến cùng một backend instance?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Easy",
+    "displayOrder": 1003,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "b3cf81d9-d76b-4f92-9693-173fa8f44fce",
+        "content": "<p>Round-robin</p>",
+        "questionId": "63c93ef0-7bdd-4d74-b2ee-cee7cd25c0f3",
+        "correct": false
+      },
+      {
+        "id": "b03b8ddd-c4c3-47fc-8c72-2cc2963ed548",
+        "content": "<p>Least connections</p>",
+        "questionId": "63c93ef0-7bdd-4d74-b2ee-cee7cd25c0f3",
+        "correct": false
+      },
+      {
+        "id": "a86b1fe3-8398-4c9e-93ad-c415f3f1e73f",
+        "content": "<p>Random selection</p>",
+        "questionId": "63c93ef0-7bdd-4d74-b2ee-cee7cd25c0f3",
+        "correct": false
+      },
+      {
+        "id": "50eb8582-e324-4c58-8005-683bf3ec44b9",
+        "content": "<p>IP hash</p>",
+        "questionId": "63c93ef0-7bdd-4d74-b2ee-cee7cd25c0f3",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "e29a381a-f3a7-4ba8-b2ac-cce1fdaab8be",
+    "questionId": "ae28525f-3594-4c45-9954-631bba8f5fb4",
+    "content": "<p>Khi triển khai trên Kubernetes, lý do chính tại sao nhiều hệ thống không cần Eureka hay Consul nữa là gì?</p>",
+    "type": "singleChoice",
+    "difficultyLevel": "Medium",
+    "displayOrder": 533,
+    "isVisible": true,
+    "isCustomized": false,
+    "questionAnswers": [
+      {
+        "id": "59237405-ddea-4c56-90f1-07533d8e3220",
+        "content": "<p>Kubernetes không cho phép cài Eureka hay Consul</p>",
+        "questionId": "ae28525f-3594-4c45-9954-631bba8f5fb4",
+        "correct": false
+      },
+      {
+        "id": "41b55774-804e-4e6c-9e68-d58c595ed281",
+        "content": "<p>Eureka và Consul không hỗ trợ container</p>",
+        "questionId": "ae28525f-3594-4c45-9954-631bba8f5fb4",
+        "correct": false
+      },
+      {
+        "id": "73022bcf-4991-466c-8d98-6594d25a8918",
+        "content": "<p>Kubernetes cung cấp built-in Service Discovery thông qua CoreDNS và ClusterIP Service — service tự đăng ký khi Pod khởi động và tự deregister khi Pod dừng mà không cần registry riêng</p>",
+        "questionId": "ae28525f-3594-4c45-9954-631bba8f5fb4",
+        "correct": true
+      },
+      {
+        "id": "028e5cfd-eb55-45b9-b2db-d90b0af0d01a",
+        "content": "<p>Eureka và Consul tốn quá nhiều RAM trong môi trường container</p>",
+        "questionId": "ae28525f-3594-4c45-9954-631bba8f5fb4",
+        "correct": false
+      }
+    ]
   }
 ]
